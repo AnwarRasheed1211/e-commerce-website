@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from '../styles/Home.module.css'; // Importing CSS module
-import Link from 'next/link';
 
 export default function Home() {
   const [cartCount, setCartCount] = useState(0);
@@ -17,12 +16,7 @@ export default function Home() {
         <div className={styles.logo}>MyShop</div>
         <nav>
           <ul className={styles.navList}>
-            <li><a href="/" className={styles.navLink}>Home</a></li>
-            <li>
-              <Link href={"/main/Product"}> 
-                <div className={styles.navLink}>Products</div>
-              </Link>
-            </li>
+            <li><a href="#products" className={styles.navLink}>Products</a></li>
             <li><a href="#about" className={styles.navLink}>About</a></li>
             <li><a href="#contact" className={styles.navLink}>Contact</a></li>
             <li><a href="/cart" className={styles.cart}>Cart ({cartCount})</a></li>

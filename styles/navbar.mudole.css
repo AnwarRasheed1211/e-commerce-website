@@ -1,0 +1,10 @@
+.navBar {
+    padding: 5px 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.navContent {
+    display: flex;
+    align-items: center;
+   /* justify-content: space-between; */
+}
