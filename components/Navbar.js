@@ -1,39 +1,37 @@
-import Link from "next/link";
-import styles from '../styles/customer.module.css';
-import Image from "next/image";
+import Link from 'next/link';
+import styles from '../styles/Navbar.module.css';
 
-const customerNavbar = () => {
-    return (
-        <nav className={styles.navBar}>
-            <div className={styles.navContent}>
-                <div className={styles.logoContainer}>
-                    <Image src="/log0.jpg" alt="Logo" width={80} height={80} />
-                </div>
-                <div className={styles.buttonContainer}>
-                    <Link href={'/mainpage/homepage'}>
-                    <div className={styles.button}>
-                        HOME
-                    </div>
-                    </Link>
-                    <Link href={'/main/browse'}>
-                    <div className={styles.button}> 
-                        MENU 
-                    </div>
-                    </Link>
-                    <Link href={'/addtocart'}>
-                    <div className={styles.button}> 
-                        BOOKING INFO
-                    </div>
-                    </Link>
-                    <Link href={'/main/checkout'}>
-                    <div className={styles.button}> 
-                        GALLERY 
-                    </div>
-                    </Link>          
-                </div>
-            </div>
-        </nav>
-    );
-};
-
-export default customerNavbar;
+export default function Navbar({ cartCount = 0 }) {
+  return (
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>MyShop</div>
+      <ul className={styles.navList}>
+        <li>
+          <Link href="/">
+            <div className={styles.navLink}>Home</div>
+          </Link>
+        </li>
+        <li>
+          <Link href="/main/Product">
+            <div className={styles.navLink}>Products</div>
+          </Link>
+        </li>
+        <li>
+          <Link href="/main/aboutus">
+            <div className={styles.navLink}>About Us</div>
+          </Link>
+        </li>
+        <li>
+          <Link href="/main/contactus\">
+          <div className={styles.navLink}>Contact</div>
+          </Link>
+        </li>
+        <li>
+          <Link href="/main/cart">
+            <div className={styles.cart}>Cart ({cartCount})</div>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}

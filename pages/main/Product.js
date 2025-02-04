@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import styles from '../../styles/product.module.css'; // Importing CSS module
 import Link from 'next/link'; // Add this import statement
+import AddToCart from '../main/cart';
+import Navbar from '../../components/Navbar';
+
 
 const products = [
   { id: 1, name: 'Product 1', price: 19.99, image: '/product1.jpg' },
@@ -18,41 +21,10 @@ export default function Products() {
   };
 
   return (
+    <>
+    <Navbar/>
     <main className={styles.main}>
-      <header className={styles.header}>
-        <h1>Browse Our Products</h1>
-        <p>Cart Items: {cartCount}</p>
-        {/* Navbar with Link to Home */}
-        <nav>
-          <ul className={styles.navList}>
-            <li>
-              <Link href="/">
-                <div className={styles.navLink}>Home</div>
-              </Link>
-            </li>
-            <li>
-              <Link href={"/main/Product"}>
-                <div className={styles.navLink}>Products</div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#about">
-                <div className={styles.navLink}>About</div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#contact">
-                <div className={styles.navLink}>Contact</div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/cart">
-                <div className={styles.cart}>Cart ({cartCount})</div>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      
 
       <section className={styles.productGrid}>
         {products.map((product) => (
@@ -79,5 +51,6 @@ export default function Products() {
         <p>&copy; 2024 MyShop. All Rights Reserved.</p>
       </footer>
     </main>
+    </>
   );
 }
