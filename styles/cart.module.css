@@ -1,49 +1,176 @@
+/* Cart Container */
+.cartContainer {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  color: black;
+}
+
 /* Product Card */
 .productCard {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .productImage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-  }
-  
-  .productName {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-  }
-  
-  .productPrice {
-    font-size: 1rem;
-    color: #888;
-    margin-bottom: 1rem;
-  }
-  
-  .addToCartButton {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .addToCartButton:hover {
-    background-color: #555;
-  }
-  
-  .cartCount {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox */
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  margin-right: 15px; /* Added space for checkbox */
+  appearance: none;
+  background-color: white;
+  border: 1px solid #0070f3;
+  border-radius: 3px;
+  position: relative;
+}
+
+.checkbox:checked {
+  background-color: #0070f3;
+  border: none;
+}
+
+.checkbox:checked::after {
+  content: '✔';
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Product Image */
+.productImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px; /* Added space for image */
+}
+
+/* Product Details */
+.productDetails {
+  flex-grow: 1;
+  text-align: left;
+  padding: 0 15px;
+  color: black;
+}
+
+.productDetails h2 {
+  font-size: 18px;
+  margin: 5px 0;
+  color: black; /* Title color */
+}
+
+.productDetails p {
+  font-size: 16px;
+  color: red;
+}
+
+/* Original Price (Strikethrough) */
+.originalPrice {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 14px;
+}
+
+/* Discounted Price */
+.discountedPrice {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+/* Out of Stock */
+.outOfStock {
+  color: #e60000;
+  font-weight: bold;
+}
+
+/* Quantity Selector */
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantitySelector button {
+  background: #0070f3;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  color: white;
+}
+
+.quantitySelector button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.quantitySelector button:hover:not(:disabled) {
+  background: #005bb5;
+}
+
+.quantitySelector span {
+  color: black; /* Number color */
+}
+
+/* Total Price */
+.totalPrice {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e60000;
+  margin-right: 15px; /* Added space between price and delete button */
+}
+
+/* Remove Button */
+.removeButton {
+  background: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  text-decoration: underline;
+}
+
+/* Checkout Section */
+.checkoutSection {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.totalAmount {
+  font-size: 20px;
+  font-weight: bold;
+  color: red; /* Total amount color */
+}
+
+.checkoutButton {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.checkoutButton:hover {
+  background: #005bb5;
+}
