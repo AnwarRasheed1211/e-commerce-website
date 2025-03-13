@@ -5,9 +5,15 @@ import Navbar from '../../components/Navbar';
 
 const PaymentPage = () => {
   const [checkoutItems, setCheckoutItems] = useState([]);
+  const [user, setUser] = useState(null);
+  const [notification, setNotification] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser);
+
     const storedItems = JSON.parse(localStorage.getItem('checkoutItems')) || [];
     setCheckoutItems(storedItems);
   }, []);
@@ -17,6 +23,13 @@ const PaymentPage = () => {
   };
 
   const handlePayment = () => {
+    if (!user) {
+      setNotification("Please log in to complete the payment.");
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+      return;
+    }
+
     alert("Redirecting to payment gateway...");
     localStorage.removeItem('checkoutItems'); // Clear checkout items after payment
     router.push('/'); // Redirect to home after payment
@@ -57,6 +70,12 @@ const PaymentPage = () => {
           <button className={styles.cancelButton} onClick={handleCancel}>Cancel Payment</button>
         </div>
       </div>
+
+      {showNotification && (
+        <div className={styles.notification}>
+          {notification}
+        </div>
+      )}
     </>
   );
 };

@@ -12,6 +12,8 @@ const ShopPage = () => {
   const [user, setUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
+  const [notification, setNotification] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
   const router = useRouter();
 
   const [newProduct, setNewProduct] = useState({
@@ -75,6 +77,13 @@ const ShopPage = () => {
   };
 
   const handleAddToCart = (product) => {
+    if (!user) {
+      setNotification("Please log in to add items to the cart.");
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+      return;
+    }
+
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProductIndex = storedCart.findIndex((item) => item.id === product.id);
   
@@ -87,10 +96,19 @@ const ShopPage = () => {
     }
   
     localStorage.setItem('cart', JSON.stringify(storedCart));
-    alert(`Added ${product.name} to cart`);
+    setNotification(`Added ${product.name} to cart`);
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 3000);
   };
 
   const handleBuyNow = (product) => {
+    if (!user) {
+      setNotification("Please log in to buy items.");
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+      return;
+    }
+
     localStorage.setItem('checkoutItems', JSON.stringify([{ ...product, quantity: 1 }]));
     router.push('/main/payment');
   };
@@ -191,6 +209,12 @@ const ShopPage = () => {
               </select>
               <button className={styles.uploadButton} onClick={handleUpload}>Upload Product</button>
             </div>
+          </div>
+        )}
+
+        {showNotification && (
+          <div className={styles.notification}>
+            {notification}
           </div>
         )}
       </main>

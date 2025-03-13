@@ -9,6 +9,8 @@ export default function Home() {
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [notification, setNotification] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,7 +23,9 @@ export default function Home() {
 
   const addToCart = (product) => {
     if (!user) {
-      router.push("/main/login");
+      setNotification("Please log in to add items to the cart.");
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
       return;
     }
 
@@ -29,12 +33,16 @@ export default function Home() {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    alert(`${product.name} added to cart!`);
+    setNotification(`${product.name} added to cart!`);
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 3000);
   };
 
   const handleBuyNow = (product) => {
     if (!user) {
-      router.push("/main/login");
+      setNotification("Please log in to buy items.");
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
       return;
     }
 
@@ -63,6 +71,12 @@ export default function Home() {
             </Link>
           </button>
         </section>
+
+        {showNotification && (
+          <div className={styles.notification}>
+            {notification}
+          </div>
+        )}
 
         <section id="products" className={styles.products}>
           <h2>Featured Products ({products.length})</h2>

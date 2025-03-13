@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const router = useRouter();
 
-  // Hardcoded user credentials
+ 
   const hardcodedUser = {
     email: "admin@example.com",
     password: "password123",

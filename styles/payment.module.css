@@ -58,3 +58,26 @@
     background-color: #cc0000;
   }
   
+
+  .notification {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.5s ease-in-out;
+    z-index: 1000;
+  }
+  
+  @keyframes slideDown {
+    from {
+      top: -50px;
+    }
+    to {
+      top: 0;
+    }
+  }

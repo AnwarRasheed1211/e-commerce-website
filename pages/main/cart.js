@@ -6,9 +6,15 @@ import Navbar from '../../components/Navbar';
 const CartPage = () => {
   const [cart, setCart] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [user, setUser] = useState(null);
+  const [notification, setNotification] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser);
+
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(storedCart);
   }, []);
@@ -54,6 +60,13 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
+    if (!user) {
+      setNotification("Please log in to proceed to checkout.");
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+      return;
+    }
+
     if (selectedItems.length === 0) {
       alert("Please select at least one item to proceed to checkout.");
       return;
@@ -101,6 +114,12 @@ const CartPage = () => {
           <button className={styles.checkoutButton} onClick={handleCheckout}>Proceed to Checkout</button>
         </div>
       </div>
+
+      {showNotification && (
+        <div className={styles.notification}>
+          {notification}
+        </div>
+      )}
     </>
   );
 };
